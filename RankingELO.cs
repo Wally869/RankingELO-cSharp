@@ -4,7 +4,7 @@ public static class RankingELO {
     return 1f / (1f + Mathf.Pow(10f, (ratingPlayer2 - ratingPlayer1) / 400f));
   }
 
-  public static void UpdatePlayerRankings(float ratingPlayer1, float ratingPlayer2, float multiplier, bool isPlayer1Winner) {
+  public static Vector2 UpdatePlayerRankings(float ratingPlayer1, float ratingPlayer2, float multiplier, bool isPlayer1Winner) {
 
     float probabilityWinPlayer1 = GetProbabilityWinning(ratingPlayer1, ratingPlayer2);
 
@@ -16,6 +16,8 @@ public static class RankingELO {
       ratingPlayer1 += multiplier * (- probabilityWinPlayer1);
       ratingPlayer2 += multiplier * probabilityWinPlayer1
     }
+    
+    return new Vector2(ratingPlayer1, ratingPlayer2);
   }
 
 }
